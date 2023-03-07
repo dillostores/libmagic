@@ -1,2 +1,3 @@
 # libmagic
-Dillo Services Magic Library
+
+Dillo Web Services Magic Library
