@@ -113,7 +113,7 @@ unsigned int magic_requests_init (void) {
 // performs a basic request to the main service
 unsigned int magic_request (
 	const MagicRequestType type, const int sock_fd,
-	const char *user_id, const char *store_id
+	const char *user_id, const char *store_id, const char *payment_id
 ) {
 
 	unsigned int retval = 1;
@@ -132,13 +132,19 @@ unsigned int magic_request (
 		magic_request->sock_fd = sock_fd;
 		if (user_id) {
 			(void) snprintf (
-				magic_request->user_id, MAGIC_REQUEST_USER_ID_SIZE, "%s", user_id
+				magic_request->user_id, MAGIC_REQUEST_ID_SIZE, "%s", user_id
 			);
 		}
 
 		if (store_id) {
 			(void) snprintf (
-				magic_request->store_id, MAGIC_REQUEST_STORE_ID_SIZE, "%s", store_id
+				magic_request->store_id, MAGIC_REQUEST_ID_SIZE, "%s", store_id
+			);
+		}
+
+		if (payment_id) {
+			(void) snprintf (
+				magic_request->payment_id, MAGIC_REQUEST_ID_SIZE, "%s", payment_id
 			);
 		}
 
