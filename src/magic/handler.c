@@ -147,7 +147,7 @@ void magic_handlers_kill_all (void) {
 
 static inline unsigned int magic_handler_make_request_internal (
 	const HttpReceive *http_receive, const MagicRequestType type,
-	const char *user_id, const char *store_id
+	const char *user_id, const char *store_id, const char *payment_id
 ) {
 
 	unsigned int retval = 1;
@@ -155,7 +155,7 @@ static inline unsigned int magic_handler_make_request_internal (
 	if (!magic_handler_register (http_receive)) {
 		if (!magic_request (
 			type, http_receive->cr->connection->socket->sock_fd,
-			user_id, store_id
+			user_id, store_id, payment_id
 		)) {
 			MagicHandler *handler = magic_handlers[
 				http_receive->cr->connection->socket->sock_fd
@@ -188,14 +188,14 @@ static inline unsigned int magic_handler_make_request_internal (
 
 unsigned int magic_handler_make_request (
 	const HttpReceive *http_receive, const MagicRequestType type,
-	const char *user_id, const char *store_id
+	const char *user_id, const char *store_id, const char *payment_id
 ) {
 
 	unsigned int retval = 1;
 
 	if (service_is_connected ()) {
 		retval = magic_handler_make_request_internal (
-			http_receive, type, user_id, store_id
+			http_receive, type, user_id, store_id, payment_id
 		);
 	}
 

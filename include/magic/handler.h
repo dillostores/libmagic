@@ -52,7 +52,7 @@ MAGIC_PRIVATE void magic_handlers_kill_all (void);
 MAGIC_PUBLIC unsigned int magic_handler_make_request (
 	const struct _HttpReceive *http_receive,
 	const MagicRequestType type,
-	const char *user_id, const char *store_id
+	const char *user_id, const char *store_id, const char *payment_id
 );
 
 MAGIC_PRIVATE void magic_app_handler_direct (void *packet_ptr);
