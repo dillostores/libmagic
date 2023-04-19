@@ -5,7 +5,9 @@
 
 #include "magic/config.h"
 
-#define REQUESTS_DEFAULT_POOL_INIT				16
+#define MAGIC_REQUEST_ID_SIZE				32
+
+#define REQUESTS_DEFAULT_POOL_INIT			16
 
 #define MAGIC_REQUEST_TYPE_MAP(XX)																	\
 	XX(0,	NONE, 					None, 					Undefined)								\
@@ -55,16 +57,15 @@ MAGIC_PUBLIC const char *magic_request_type_description (
 #define MAGIC_REQUEST_USER_ID_SIZE		32
 #define MAGIC_REQUEST_STORE_ID_SIZE		32
 
-// general data sent to magic main
 typedef struct MagicRequest {
 
-	// sock fd of the connection that made the original request
 	i32 sock_fd;
 
-	// the user who made the original request
-	char user_id[MAGIC_REQUEST_USER_ID_SIZE];
+	char user_id[MAGIC_REQUEST_ID_SIZE];
 
-	char store_id[MAGIC_REQUEST_STORE_ID_SIZE];
+	char store_id[MAGIC_REQUEST_ID_SIZE];
+
+	char payment_id[MAGIC_REQUEST_ID_SIZE];
 
 } MagicRequest;
 
@@ -73,7 +74,7 @@ MAGIC_PRIVATE unsigned int magic_requests_init (void);
 // performs a basic request to the main service
 MAGIC_PRIVATE unsigned int magic_request (
 	const MagicRequestType type, const int sock_fd,
-	const char *user_id, const char *store_id
+	const char *user_id, const char *store_id, const char *payment_id
 );
 
 MAGIC_PRIVATE void magic_requests_end (void);
