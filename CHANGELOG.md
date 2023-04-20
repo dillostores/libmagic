@@ -1,3 +1,3 @@
-- Added payment method in magic request structure
-- Refactored magic create request to handle payment
-- Updated latest magic handle make request method
+- Updated network address size & added default port
+- Removed magic network fetch main service address
+- Getting main network configuration from magic init

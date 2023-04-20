@@ -4,6 +4,7 @@
 #include "magic/service.h"
 
 unsigned int magic_init (
+	const char *magic_service_address, const unsigned int magic_service_port,
 	const char *magic_user, const char *magic_password,
 	const ServiceStatusUpdate service_status_updated,
 	const ServiceConnectionUpdate service_connected_updated
@@ -17,7 +18,9 @@ unsigned int magic_init (
 
 	errors |= magic_requests_init ();
 
-	errors |= magic_network_init (magic_user, magic_password);
+	errors |= magic_network_init (
+		magic_service_address, magic_service_port, magic_user, magic_password
+	);
 
 	return errors;
 

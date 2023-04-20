@@ -3,7 +3,9 @@
 
 #include "magic/config.h"
 
-#define NETWORK_ADDRESS_SIZE			128
+#define NETWORK_ADDRESS_SIZE			256
+
+#define MAGIC_SERVICE_DEFAULT_PORT		7000
 
 #define MAGIC_CONNECTION_MAX_SLEEP		30
 #define MAGIC_CONNECTION_BUFFER_SIZE	2048
@@ -13,6 +15,7 @@
 struct _Packet;
 
 MAGIC_PRIVATE unsigned int magic_network_init (
+	const char *magic_service_address, const unsigned int magic_service_port,
 	const char *magic_user, const char *magic_password
 );
 
