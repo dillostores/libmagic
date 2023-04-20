@@ -126,22 +126,23 @@ static unsigned int magic_network_client_init (void) {
 }
 
 unsigned int magic_network_init (
+	const char *magic_service_address, const unsigned int magic_service_port,
 	const char *magic_user, const char *magic_password
 ) {
 
-	unsigned int retval = 1;
+	unsigned int errors = 0;
 
-	if (!magic_network_get_main_service ()) {
-		unsigned int errors = 0;
+	(void) snprintf (
+		MAGIC_MAIN_ADDRESS, NETWORK_ADDRESS_SIZE, "%s", magic_service_address
+	);
 
-		auth_credentials = magic_credentials_new (magic_user, magic_password);
+	MAGIC_MAIN_PORT = magic_service_port;
 
-		errors |= magic_network_client_init ();
+	auth_credentials = magic_credentials_new (magic_user, magic_password);
 
-		retval = errors;
-	}
+	errors |= magic_network_client_init ();
 
-	return retval;
+	return errors;
 
 }
 

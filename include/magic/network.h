@@ -15,6 +15,7 @@
 struct _Packet;
 
 MAGIC_PRIVATE unsigned int magic_network_init (
+	const char *magic_service_address, const unsigned int magic_service_port,
 	const char *magic_user, const char *magic_password
 );
 
