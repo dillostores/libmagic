@@ -3,10 +3,10 @@
 
 #include "magic/config.h"
 
-#define DILLO_MAGIC_VERSION			"0.2.1"
-#define DILLO_MAGIC_VERSION_NAME	"Version 0.2.1"
-#define DILLO_MAGIC_VERSION_DATE	"19/04/2023"
-#define DILLO_MAGIC_VERSION_TIME	"16:20 CST"
+#define DILLO_MAGIC_VERSION			"0.2.2"
+#define DILLO_MAGIC_VERSION_NAME	"Version 0.2.2"
+#define DILLO_MAGIC_VERSION_DATE	"20/04/2023"
+#define DILLO_MAGIC_VERSION_TIME	"11:22 CST"
 #define DILLO_MAGIC_VERSION_AUTHOR	"Erick Salas"
 
 #ifdef __cplusplus
