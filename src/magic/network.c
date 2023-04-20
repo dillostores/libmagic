@@ -23,37 +23,12 @@
 static Client *main_client = NULL;
 static Connection *main_connection = NULL;
 
-static const char *MAGIC_MAIN_NAME = { "main" };
-static char REAL_MAGIC_MAIN_ADDRESS[NETWORK_ADDRESS_SIZE] = { 0 };
-static const char *MAGIC_MAIN_ADDRESS = REAL_MAGIC_MAIN_ADDRESS;
-static const unsigned int MAGIC_MAIN_PORT = 7000;
+static char MAGIC_MAIN_ADDRESS[NETWORK_ADDRESS_SIZE] = { 0 };
+static unsigned int MAGIC_MAIN_PORT = MAGIC_SERVICE_DEFAULT_PORT;
 
 static MagicCredentials *auth_credentials = NULL;
 
 static unsigned int magic_network_client_connect (void);
-
-static unsigned int magic_network_get_main_service (void) {
-
-	unsigned int retval = 1;
-
-	char *service_ip = network_hostname_to_ip (MAGIC_MAIN_NAME);
-	if (service_ip) {
-		(void) snprintf (
-			REAL_MAGIC_MAIN_ADDRESS, NETWORK_ADDRESS_SIZE, "%s", service_ip
-		);
-
-		free (service_ip);
-
-		retval = 0;
-	}
-
-	else {
-		cerver_log_error ("Failed to get MAGIC MAIN address!");
-	}
-
-	return retval;
-
-}
 
 static unsigned int magic_network_create_connection (void) {
 
